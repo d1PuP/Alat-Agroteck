@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LSP K6</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <h1>Sistem Monitoring Tanaman</h1>
+        <div class="status" id="status">
+          <span class="dot"></span>
+          <span id="statusText">Connected</span>
+        </div>
+      </header>
+
+      <!-- Main Dashboard -->
+      <main class="dashboard">
+        <!-- Control Panel -->
+        <section class="card control-card">
+          <h2>Control</h2>
+
+          <div class="controls-grid">
+            <div class="control-item">
+              <button
+                id="pumpBtn"
+                class="control-btn pump"
+                onclick="togglePump()"
+              >
+                <span id="pumpText">Pump ON</span>
+              </button>
+              <p id="pumpStatus" class="status-text">Pump: OFF</p>
+            </div>
+
+            <div class="control-item">
+              <button id="fanBtn" class="control-btn fan" onclick="toggleFan()">
+                <span id="fanText">Fan ON</span>
+              </button>
+              <p id="fanStatus" class="status-text">Fan: OFF</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sensor Data -->
+        <section class="card sensors-card">
+          <h2>Sensors</h2>
+
+          <div class="gauges-grid">
+            <!-- Temperature -->
+            <div class="gauge-container">
+              <div class="gauge temp-gauge">
+                <div class="gauge-inner">
+                  <div class="gauge-value" id="tempValue">--</div>
+                  <div class="gauge-unit">°C</div>
+                </div>
+
+                <svg class="gauge-svg" viewBox="0 0 100 100">
+                  <circle class="gauge-bg" cx="50" cy="50" r="40"></circle>
+                  <circle
+                    class="gauge-fill"
+                    id="tempGauge"
+                    cx="50"
+                    cy="50"
+                    r="40"
+                  ></circle>
+                </svg>
+              </div>
+              <div class="gauge-label">Temperature</div>
+            </div>
+
+            <!-- Humidity -->
+            <div class="gauge-container">
+              <div class="gauge humidity-gauge">
+                <div class="gauge-inner">
+                  <div class="gauge-value" id="humidityValue">--</div>
+                  <div class="gauge-unit">%</div>
+                </div>
+
+                <svg class="gauge-svg" viewBox="0 0 100 100">
+                  <circle class="gauge-bg" cx="50" cy="50" r="40"></circle>
+                  <circle
+                    class="gauge-fill"
+                    id="humidityGauge"
+                    cx="50"
+                    cy="50"
+                    r="40"
+                  ></circle>
+                </svg>
+              </div>
+              <div class="gauge-label">Humidity</div>
+            </div>
+
+            <!-- Soil Moisture -->
+            <div class="gauge-container">
+              <div class="gauge soil-gauge">
+                <div class="gauge-inner">
+                  <div class="gauge-value" id="soilValue">--</div>
+                  <div class="gauge-unit">%</div>
+                </div>
+
+                <svg class="gauge-svg" viewBox="0 0 100 100">
+                  <circle class="gauge-bg" cx="50" cy="50" r="40"></circle>
+                  <circle
+                    class="gauge-fill"
+                    id="soilGauge"
+                    cx="50"
+                    cy="50"
+                    r="40"
+                  ></circle>
+                </svg>
+              </div>
+              <div class="gauge-label">Soil Moisture</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chart -->
+        <section class="card chart-card">
+          <h2>Real-time Chart</h2>
+          <div class="chart-container">
+            <canvas id="sensorChart"></canvas>
+          </div>
+        </section>
+      </main>
+
+      <!-- Alert -->
+      <div id="alert" class="alert hidden"></div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p id="lastUpdate">Last update: --:--:--</p>
+      </footer>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+  </body>
+</html>
